@@ -1,0 +1,28 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label>
+    Email:
+    <input id="form_email" type="email" placeholder="Email" formControlName="{{ FORM_FIELD_USERNAME }}"/>
+  </label>
+
+  <div *ngIf="this.isInvalidFormField(FORM_FIELD_USERNAME)">
+    <div *ngIf="this.userNameControl.errors?.required">
+      Please enter user email
+    </div>
+    <div *ngIf="this.userNameControl.errors?.email">
+      Please enter valid email address
+    </div>
+  </div>
+
+  <label>
+    Password:
+    <input type="password" placeholder="Password" formControlName="{{ FORM_FIELD_PASSWORD }}" />
+  </label>
+
+  <div *ngIf="this.isInvalidFormField(FORM_FIELD_PASSWORD)">
+    <div *ngIf="this.passwordControl.errors?.required">
+      Please enter the password
+    </div>
+  </div>
+
+  <button type="submit">Login</button>
+</form>
