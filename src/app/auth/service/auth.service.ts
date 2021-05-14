@@ -28,19 +28,6 @@ export class AuthService {
     );
   }
 
-  public logout(): Observable<boolean> {
-    return this.httpClient.post(`${config.apiUrl}/logout`, {
-      refreshToken: this.getRefreshToken(),
-    }).pipe(
-      tap(() => this.doLogoutUser()),
-      mapTo(true),
-      catchError(error => {
-        console.error('failed to logout, error: ', error.error);
-        return of(false);
-      }),
-    );
-  }
-
   public refreshToken(): Observable<Tokens | null> {
     return this.httpClient.post<Tokens>(`${config.apiUrl}/token/refresh`, {
       refreshToken: this.getRefreshToken(),
@@ -67,7 +54,7 @@ export class AuthService {
     this.storeTokens(tokens);
   }
 
-  private doLogoutUser(): void {
+  public logout(): void {
     this.loggedUser = null;
     this.removeTokens();
   }

@@ -1,3 +1,3 @@
 export const config = {
-  apiUrl: `https://localhost:8000/api`,
+  apiUrl: `http://self-control-diary.loc:8080/api`,
 };
